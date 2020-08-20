@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nedeljni_III_Milos_Peric.View"
         mc:Ignorable="d"
+<<<<<<< HEAD
         Title="User" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -78,5 +79,10 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
+=======
+        Title="UserView" Height="450" Width="800">
+    <Grid>
+        <TextBlock Text="{Binding User.UserName}" FontSize="30"></TextBlock>
+>>>>>>> features/Milos
     </Grid>
 </Window>

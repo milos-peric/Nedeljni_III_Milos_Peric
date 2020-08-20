@@ -1,0 +1,24 @@
+﻿<Window x:Class="Nedeljni_III_Milos_Peric.View.FirstTimeAccessView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nedeljni_III_Milos_Peric.View"
+        mc:Ignorable="d"
+        Title="FirstTimeAccessView" Height="320" Width="350" FontSize="14" Background="#FF403033" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Border Background="#FF304557" CornerRadius="0" Margin="0,0,0,0">
+            <StackPanel Margin="40,15,40,10">
+                <TextBlock TextWrapping="Wrap" Margin="0,10,0,10" TextAlignment="Center" Text="System has detected you have logged in for the first time, please enter your first and last name below:" Foreground="White" />
+                <Label Content="First Name:" Foreground="White" HorizontalAlignment="Left" Margin="0 0"/>
+                <TextBox Text="{Binding User.FirstName, UpdateSourceTrigger=PropertyChanged}" Background="#545d6a" Foreground="White" Height="25"/>
+                <Label Content="Last Name:" Foreground="White" HorizontalAlignment="Left" Margin="0 0"/>
+                <TextBox Text="{Binding User.LastName, UpdateSourceTrigger=PropertyChanged}" Background="#545d6a" Foreground="White" Height="25"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,30" Height="52">
+                    <Button Command="{Binding ConfirmCommand}" Width="80" HorizontalAlignment="Left" Content="Confirm" Margin="30,20,10,0" Background="#545d6a" Foreground="White" FontSize="18"/>
+                    <Button Command="{Binding CancelCommand}" Width="80" HorizontalAlignment="Right" Content="Cancel" Margin="25,20,10,0" Background="#545d6a" Foreground="White" FontSize="18"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

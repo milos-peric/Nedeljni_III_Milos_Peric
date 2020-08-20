@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 ﻿using Nedeljni_III_Milos_Peric.ViewModel;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Documents;
-=======
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,22 +12,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
->>>>>>> features/Milos
 
 namespace Nedeljni_III_Milos_Peric.View
 {
     /// <summary>
-    /// Interaction logic for ChooseIngredientsView.xaml
+    /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class ChooseIngredientsView : Window
+    public partial class LoginView : Window
     {
-        public ChooseIngredientsView()
+        public LoginView()
         {
             InitializeComponent();
-<<<<<<< HEAD
-            this.DataContext = new ChooseIngredientsViewModel(this);
-=======
->>>>>>> features/Milos
+            DataContext = new LoginViewModel(this);
         }
     }
 }

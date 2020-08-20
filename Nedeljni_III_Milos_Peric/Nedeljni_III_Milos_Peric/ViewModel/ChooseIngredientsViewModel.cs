@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using Dan_LIII_Milos_Peric.Command;
 using Dan_LIII_Milos_Peric.ViewModel;
 using Nedeljni_III_Milos_Peric.View;
@@ -309,5 +310,17 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
         }
 
         #endregion
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Nedeljni_III_Milos_Peric.ViewModel
+{
+    class ChooseIngredientsViewModel
+    {
+>>>>>>> features/Milos
     }
 }
