@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RecipeDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblIngredient">
+          <Key>
+            <PropertyRef Name="IngredientID" />
+          </Key>
+          <Property Name="IngredientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IngredientName" Type="varchar" MaxLength="50" />
+          <Property Name="IngredientAmount" Type="int" />
+        </EntityType>
+        <EntityType Name="tblRecipe">
+          <Key>
+            <PropertyRef Name="RecipeID" />
+          </Key>
+          <Property Name="RecipeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecipeName" Type="varchar" MaxLength="50" />
+          <Property Name="RecipeType" Type="varchar" MaxLength="50" />
+          <Property Name="Portions" Type="int" />
+          <Property Name="RecipeText" Type="varchar" MaxLength="255" />
+          <Property Name="RecipeDateOfCreation" Type="datetime" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblRecipeIngredient">
+          <Key>
+            <PropertyRef Name="RecipeIngredientID" />
+          </Key>
+          <Property Name="RecipeIngredientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecipeID" Type="int" />
+          <Property Name="IngredientID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="70" />
+        </EntityType>
+        <Association Name="FK__tblRecipe__Ingre__3F466844">
+          <End Role="tblIngredient" Type="Self.tblIngredient" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblRecipeIngredient" Type="Self.tblRecipeIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblIngredient">
+              <PropertyRef Name="IngredientID" />
+            </Principal>
+            <Dependent Role="tblRecipeIngredient">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblRecipe__Recip__3E52440B">
+          <End Role="tblRecipe" Type="Self.tblRecipe" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblRecipeIngredient" Type="Self.tblRecipeIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRecipe">
+              <PropertyRef Name="RecipeID" />
+            </Principal>
+            <Dependent Role="tblRecipeIngredient">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblRecipe__UserI__398D8EEE">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblRecipe" Type="Self.tblRecipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblRecipe">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RecipeDatabaseModelStoreContainer">
+          <EntitySet Name="tblIngredient" EntityType="Self.tblIngredient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRecipe" EntityType="Self.tblRecipe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRecipeIngredient" EntityType="Self.tblRecipeIngredient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblRecipe__Ingre__3F466844" Association="Self.FK__tblRecipe__Ingre__3F466844">
+            <End Role="tblIngredient" EntitySet="tblIngredient" />
+            <End Role="tblRecipeIngredient" EntitySet="tblRecipeIngredient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblRecipe__Recip__3E52440B" Association="Self.FK__tblRecipe__Recip__3E52440B">
+            <End Role="tblRecipe" EntitySet="tblRecipe" />
+            <End Role="tblRecipeIngredient" EntitySet="tblRecipeIngredient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblRecipe__UserI__398D8EEE" Association="Self.FK__tblRecipe__UserI__398D8EEE">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblRecipe" EntitySet="tblRecipe" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RecipeDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblIngredient">
+          <Key>
+            <PropertyRef Name="IngredientID" />
+          </Key>
+          <Property Name="IngredientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IngredientName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IngredientAmount" Type="Int32" />
+          <NavigationProperty Name="tblRecipeIngredients" Relationship="Self.FK__tblRecipe__Ingre__3F466844" FromRole="tblIngredient" ToRole="tblRecipeIngredient" />
+        </EntityType>
+        <EntityType Name="tblRecipe">
+          <Key>
+            <PropertyRef Name="RecipeID" />
+          </Key>
+          <Property Name="RecipeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecipeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecipeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Portions" Type="Int32" />
+          <Property Name="RecipeText" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RecipeDateOfCreation" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="tblRecipeIngredients" Relationship="Self.FK__tblRecipe__Recip__3E52440B" FromRole="tblRecipe" ToRole="tblRecipeIngredient" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblRecipe__UserI__398D8EEE" FromRole="tblRecipe" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblRecipeIngredient">
+          <Key>
+            <PropertyRef Name="RecipeIngredientID" />
+          </Key>
+          <Property Name="RecipeIngredientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecipeID" Type="Int32" />
+          <Property Name="IngredientID" Type="Int32" />
+          <NavigationProperty Name="tblIngredient" Relationship="Self.FK__tblRecipe__Ingre__3F466844" FromRole="tblRecipeIngredient" ToRole="tblIngredient" />
+          <NavigationProperty Name="tblRecipe" Relationship="Self.FK__tblRecipe__Recip__3E52440B" FromRole="tblRecipeIngredient" ToRole="tblRecipe" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblRecipes" Relationship="Self.FK__tblRecipe__UserI__398D8EEE" FromRole="tblUser" ToRole="tblRecipe" />
+        </EntityType>
+        <Association Name="FK__tblRecipe__Ingre__3F466844">
+          <End Role="tblIngredient" Type="Self.tblIngredient" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblRecipeIngredient" Type="Self.tblRecipeIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblIngredient">
+              <PropertyRef Name="IngredientID" />
+            </Principal>
+            <Dependent Role="tblRecipeIngredient">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblRecipe__Recip__3E52440B">
+          <End Role="tblRecipe" Type="Self.tblRecipe" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblRecipeIngredient" Type="Self.tblRecipeIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRecipe">
+              <PropertyRef Name="RecipeID" />
+            </Principal>
+            <Dependent Role="tblRecipeIngredient">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblRecipe__UserI__398D8EEE">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblRecipe" Type="Self.tblRecipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblRecipe">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RecipeDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblIngredients" EntityType="Self.tblIngredient" />
+          <EntitySet Name="tblRecipes" EntityType="Self.tblRecipe" />
+          <EntitySet Name="tblRecipeIngredients" EntityType="Self.tblRecipeIngredient" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <AssociationSet Name="FK__tblRecipe__Ingre__3F466844" Association="Self.FK__tblRecipe__Ingre__3F466844">
+            <End Role="tblIngredient" EntitySet="tblIngredients" />
+            <End Role="tblRecipeIngredient" EntitySet="tblRecipeIngredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblRecipe__Recip__3E52440B" Association="Self.FK__tblRecipe__Recip__3E52440B">
+            <End Role="tblRecipe" EntitySet="tblRecipes" />
+            <End Role="tblRecipeIngredient" EntitySet="tblRecipeIngredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblRecipe__UserI__398D8EEE" Association="Self.FK__tblRecipe__UserI__398D8EEE">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblRecipe" EntitySet="tblRecipes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RecipeDatabaseModelStoreContainer" CdmEntityContainer="RecipeDatabaseEntities">
+          <EntitySetMapping Name="tblIngredients">
+            <EntityTypeMapping TypeName="RecipeDatabaseModel.tblIngredient">
+              <MappingFragment StoreEntitySet="tblIngredient">
+                <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
+                <ScalarProperty Name="IngredientName" ColumnName="IngredientName" />
+                <ScalarProperty Name="IngredientAmount" ColumnName="IngredientAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRecipes">
+            <EntityTypeMapping TypeName="RecipeDatabaseModel.tblRecipe">
+              <MappingFragment StoreEntitySet="tblRecipe">
+                <ScalarProperty Name="RecipeID" ColumnName="RecipeID" />
+                <ScalarProperty Name="RecipeName" ColumnName="RecipeName" />
+                <ScalarProperty Name="RecipeType" ColumnName="RecipeType" />
+                <ScalarProperty Name="Portions" ColumnName="Portions" />
+                <ScalarProperty Name="RecipeText" ColumnName="RecipeText" />
+                <ScalarProperty Name="RecipeDateOfCreation" ColumnName="RecipeDateOfCreation" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRecipeIngredients">
+            <EntityTypeMapping TypeName="RecipeDatabaseModel.tblRecipeIngredient">
+              <MappingFragment StoreEntitySet="tblRecipeIngredient">
+                <ScalarProperty Name="RecipeIngredientID" ColumnName="RecipeIngredientID" />
+                <ScalarProperty Name="RecipeID" ColumnName="RecipeID" />
+                <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="RecipeDatabaseModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

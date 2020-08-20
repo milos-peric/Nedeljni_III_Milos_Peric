@@ -1,0 +1,22 @@
+﻿<Window x:Class="Nedeljni_III_Milos_Peric.View.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nedeljni_III_Milos_Peric.View"
+        mc:Ignorable="d"
+        Title="LoginView" Height="300" Width="300" FontSize="14" Background="#FF403033" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Border Background="#FF304557" CornerRadius="0" Margin="0,0,0,0">
+            <StackPanel Margin="45,15,45,10">
+                <Label Content="Login" Foreground="White" FontSize="25" Margin="0 10" HorizontalAlignment="Center"/>
+                <Separator Margin="0 0 0 10"></Separator>
+                <Label Content="Username" Foreground="White" Margin="0 -5"/>
+                <TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Background="#545d6a" Foreground="White" FontSize="12" Margin="0 5" Height="25"/>
+                <Label Content="Password" Foreground="White" Margin="0 5"/>
+                <PasswordBox Name="passwordBox" Background="#545d6a" Foreground="White" FontSize="12" Margin="0 -10" Height="25"/>
+                <Button Command="{Binding Submit}" Width="80" CommandParameter="{Binding ElementName=passwordBox}" Content="Submit" Margin="60 35" Background="#545d6a" Foreground="White" FontSize="18"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
