@@ -5,11 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-<<<<<<< HEAD
-namespace Dan_LIII_Milos_Peric.Command
-=======
 namespace Nedeljni_III_Milos_Peric.Command
->>>>>>> features/Milos
 {
 	public class RelayCommand : ICommand
 	{
@@ -38,9 +34,5 @@ namespace Nedeljni_III_Milos_Peric.Command
 			this.execute(parameter);
 		}
 	}
-<<<<<<< HEAD
-}
-=======
 }
 
->>>>>>> features/Milos

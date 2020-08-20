@@ -1,7 +1,4 @@
 ﻿using Nedeljni_III_Milos_Peric.ViewModel;
-<<<<<<< HEAD
-using System.Windows;
-=======
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
->>>>>>> features/Milos
 
 namespace Nedeljni_III_Milos_Peric.View
 {
@@ -27,7 +23,6 @@ namespace Nedeljni_III_Milos_Peric.View
         public UserView(tblUser user)
         {
             InitializeComponent();
-<<<<<<< HEAD
             this.DataContext = new UserViewModel(this, user);
         }
 
@@ -35,9 +30,6 @@ namespace Nedeljni_III_Milos_Peric.View
         {
             InitializeComponent();
             this.DataContext = new UserViewModel(this);
-=======
-            DataContext = new UserViewModel(this, user);
->>>>>>> features/Milos
         }
     }
 }

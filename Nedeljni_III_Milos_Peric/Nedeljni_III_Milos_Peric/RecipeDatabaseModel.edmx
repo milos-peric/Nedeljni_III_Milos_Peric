@@ -43,11 +43,7 @@
           <Property Name="UserName" Type="varchar" MaxLength="50" />
           <Property Name="Password" Type="varchar" MaxLength="70" />
         </EntityType>
-<<<<<<< HEAD
-        <Association Name="FK__tblRecipe__Ingre__70DDC3D8">
-=======
         <Association Name="FK__tblRecipe__Ingre__3F466844">
->>>>>>> features/Milos
           <End Role="tblIngredient" Type="Self.tblIngredient" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -61,11 +57,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-        <Association Name="FK__tblRecipe__Recip__6FE99F9F">
-=======
         <Association Name="FK__tblRecipe__Recip__3E52440B">
->>>>>>> features/Milos
           <End Role="tblRecipe" Type="Self.tblRecipe" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -79,11 +71,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-        <Association Name="FK__tblRecipe__UserI__6B24EA82">
-=======
         <Association Name="FK__tblRecipe__UserI__398D8EEE">
->>>>>>> features/Milos
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
           <End Role="tblRecipe" Type="Self.tblRecipe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -100,17 +88,6 @@
           <EntitySet Name="tblRecipe" EntityType="Self.tblRecipe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblRecipeIngredient" EntityType="Self.tblRecipeIngredient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
-<<<<<<< HEAD
-          <AssociationSet Name="FK__tblRecipe__Ingre__70DDC3D8" Association="Self.FK__tblRecipe__Ingre__70DDC3D8">
-            <End Role="tblIngredient" EntitySet="tblIngredient" />
-            <End Role="tblRecipeIngredient" EntitySet="tblRecipeIngredient" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tblRecipe__Recip__6FE99F9F" Association="Self.FK__tblRecipe__Recip__6FE99F9F">
-            <End Role="tblRecipe" EntitySet="tblRecipe" />
-            <End Role="tblRecipeIngredient" EntitySet="tblRecipeIngredient" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tblRecipe__UserI__6B24EA82" Association="Self.FK__tblRecipe__UserI__6B24EA82">
-=======
           <AssociationSet Name="FK__tblRecipe__Ingre__3F466844" Association="Self.FK__tblRecipe__Ingre__3F466844">
             <End Role="tblIngredient" EntitySet="tblIngredient" />
             <End Role="tblRecipeIngredient" EntitySet="tblRecipeIngredient" />
@@ -120,7 +97,6 @@
             <End Role="tblRecipeIngredient" EntitySet="tblRecipeIngredient" />
           </AssociationSet>
           <AssociationSet Name="FK__tblRecipe__UserI__398D8EEE" Association="Self.FK__tblRecipe__UserI__398D8EEE">
->>>>>>> features/Milos
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblRecipe" EntitySet="tblRecipe" />
           </AssociationSet>
@@ -137,11 +113,7 @@
           <Property Name="IngredientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IngredientName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IngredientAmount" Type="Int32" />
-<<<<<<< HEAD
-          <NavigationProperty Name="tblRecipeIngredients" Relationship="Self.FK__tblRecipe__Ingre__70DDC3D8" FromRole="tblIngredient" ToRole="tblRecipeIngredient" />
-=======
           <NavigationProperty Name="tblRecipeIngredients" Relationship="Self.FK__tblRecipe__Ingre__3F466844" FromRole="tblIngredient" ToRole="tblRecipeIngredient" />
->>>>>>> features/Milos
         </EntityType>
         <EntityType Name="tblRecipe">
           <Key>
@@ -154,13 +126,8 @@
           <Property Name="RecipeText" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="RecipeDateOfCreation" Type="DateTime" Precision="3" />
           <Property Name="UserID" Type="Int32" />
-<<<<<<< HEAD
-          <NavigationProperty Name="tblRecipeIngredients" Relationship="Self.FK__tblRecipe__Recip__6FE99F9F" FromRole="tblRecipe" ToRole="tblRecipeIngredient" />
-          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblRecipe__UserI__6B24EA82" FromRole="tblRecipe" ToRole="tblUser" />
-=======
           <NavigationProperty Name="tblRecipeIngredients" Relationship="Self.FK__tblRecipe__Recip__3E52440B" FromRole="tblRecipe" ToRole="tblRecipeIngredient" />
           <NavigationProperty Name="tblUser" Relationship="Self.FK__tblRecipe__UserI__398D8EEE" FromRole="tblRecipe" ToRole="tblUser" />
->>>>>>> features/Milos
         </EntityType>
         <EntityType Name="tblRecipeIngredient">
           <Key>
@@ -169,13 +136,8 @@
           <Property Name="RecipeIngredientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RecipeID" Type="Int32" />
           <Property Name="IngredientID" Type="Int32" />
-<<<<<<< HEAD
-          <NavigationProperty Name="tblIngredient" Relationship="Self.FK__tblRecipe__Ingre__70DDC3D8" FromRole="tblRecipeIngredient" ToRole="tblIngredient" />
-          <NavigationProperty Name="tblRecipe" Relationship="Self.FK__tblRecipe__Recip__6FE99F9F" FromRole="tblRecipeIngredient" ToRole="tblRecipe" />
-=======
           <NavigationProperty Name="tblIngredient" Relationship="Self.FK__tblRecipe__Ingre__3F466844" FromRole="tblRecipeIngredient" ToRole="tblIngredient" />
           <NavigationProperty Name="tblRecipe" Relationship="Self.FK__tblRecipe__Recip__3E52440B" FromRole="tblRecipeIngredient" ToRole="tblRecipe" />
->>>>>>> features/Milos
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -186,15 +148,9 @@
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-<<<<<<< HEAD
-          <NavigationProperty Name="tblRecipes" Relationship="Self.FK__tblRecipe__UserI__6B24EA82" FromRole="tblUser" ToRole="tblRecipe" />
-        </EntityType>
-        <Association Name="FK__tblRecipe__Ingre__70DDC3D8">
-=======
           <NavigationProperty Name="tblRecipes" Relationship="Self.FK__tblRecipe__UserI__398D8EEE" FromRole="tblUser" ToRole="tblRecipe" />
         </EntityType>
         <Association Name="FK__tblRecipe__Ingre__3F466844">
->>>>>>> features/Milos
           <End Role="tblIngredient" Type="Self.tblIngredient" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -208,11 +164,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-        <Association Name="FK__tblRecipe__Recip__6FE99F9F">
-=======
         <Association Name="FK__tblRecipe__Recip__3E52440B">
->>>>>>> features/Milos
           <End Role="tblRecipe" Type="Self.tblRecipe" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -226,11 +178,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-        <Association Name="FK__tblRecipe__UserI__6B24EA82">
-=======
         <Association Name="FK__tblRecipe__UserI__398D8EEE">
->>>>>>> features/Milos
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
           <End Role="tblRecipe" Type="Self.tblRecipe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -247,17 +195,6 @@
           <EntitySet Name="tblRecipes" EntityType="Self.tblRecipe" />
           <EntitySet Name="tblRecipeIngredients" EntityType="Self.tblRecipeIngredient" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
-<<<<<<< HEAD
-          <AssociationSet Name="FK__tblRecipe__Ingre__70DDC3D8" Association="Self.FK__tblRecipe__Ingre__70DDC3D8">
-            <End Role="tblIngredient" EntitySet="tblIngredients" />
-            <End Role="tblRecipeIngredient" EntitySet="tblRecipeIngredients" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tblRecipe__Recip__6FE99F9F" Association="Self.FK__tblRecipe__Recip__6FE99F9F">
-            <End Role="tblRecipe" EntitySet="tblRecipes" />
-            <End Role="tblRecipeIngredient" EntitySet="tblRecipeIngredients" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tblRecipe__UserI__6B24EA82" Association="Self.FK__tblRecipe__UserI__6B24EA82">
-=======
           <AssociationSet Name="FK__tblRecipe__Ingre__3F466844" Association="Self.FK__tblRecipe__Ingre__3F466844">
             <End Role="tblIngredient" EntitySet="tblIngredients" />
             <End Role="tblRecipeIngredient" EntitySet="tblRecipeIngredients" />
@@ -267,7 +204,6 @@
             <End Role="tblRecipeIngredient" EntitySet="tblRecipeIngredients" />
           </AssociationSet>
           <AssociationSet Name="FK__tblRecipe__UserI__398D8EEE" Association="Self.FK__tblRecipe__UserI__398D8EEE">
->>>>>>> features/Milos
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblRecipe" EntitySet="tblRecipes" />
           </AssociationSet>

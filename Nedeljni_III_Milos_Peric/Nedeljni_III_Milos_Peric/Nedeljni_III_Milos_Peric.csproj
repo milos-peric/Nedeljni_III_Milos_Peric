@@ -183,12 +183,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="RecipeDatabaseModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RecipeDatabaseModel.Context.cs</LastGenOutput>
       <DependentUpon>RecipeDatabaseModel.edmx</DependentUpon>
+      <LastGenOutput>RecipeDatabaseModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="RecipeDatabaseModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

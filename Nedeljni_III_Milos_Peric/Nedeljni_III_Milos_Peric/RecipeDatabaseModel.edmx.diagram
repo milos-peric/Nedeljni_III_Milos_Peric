@@ -4,25 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-<<<<<<< HEAD
-      <Diagram DiagramId="b9a90b82a7ad40f39860f99e0c7f3c00" Name="Diagram1">
-        <EntityTypeShape EntityType="RecipeDatabaseModel.tblIngredient" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+      <Diagram DiagramId="a53a1b00d08b4a90b0c4701c93253660" Name="Diagram1">
+        <EntityTypeShape EntityType="RecipeDatabaseModel.tblIngredient" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RecipeDatabaseModel.tblRecipe" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="RecipeDatabaseModel.tblRecipeIngredient" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecipeDatabaseModel.tblUser" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <AssociationConnector Association="RecipeDatabaseModel.FK__tblRecipe__Ingre__70DDC3D8" ManuallyRouted="false" />
-        <AssociationConnector Association="RecipeDatabaseModel.FK__tblRecipe__Recip__6FE99F9F" ManuallyRouted="false" />
-        <AssociationConnector Association="RecipeDatabaseModel.FK__tblRecipe__UserI__6B24EA82" ManuallyRouted="false" />
-=======
-      <Diagram DiagramId="6fe701da0cf941b5bbf4f5dcd37bfa1d" Name="Diagram1">
-        <EntityTypeShape EntityType="RecipeDatabaseModel.tblIngredient" Width="1.75" PointX="8.125" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecipeDatabaseModel.tblRecipe" Width="1.75" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecipeDatabaseModel.tblRecipeIngredient" Width="1.875" PointX="5.625" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="RecipeDatabaseModel.tblUser" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="RecipeDatabaseModel.FK__tblRecipe__Ingre__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="RecipeDatabaseModel.FK__tblRecipe__Recip__3E52440B" ManuallyRouted="false" />
         <AssociationConnector Association="RecipeDatabaseModel.FK__tblRecipe__UserI__398D8EEE" ManuallyRouted="false" />
->>>>>>> features/Milos
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
