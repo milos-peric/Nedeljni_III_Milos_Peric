@@ -1,0 +1,82 @@
+﻿<Window x:Class="Nedeljni_III_Milos_Peric.View.UserView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nedeljni_III_Milos_Peric.View"
+        mc:Ignorable="d"
+        Title="User" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="1" Grid.Row="1" Name="btnAddRecipe" Content="Add Recipe" 
+                Height="20" Width="200" HorizontalAlignment="Left"
+                Command="{Binding AddRecipe, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,0"/>
+        
+        <Button Grid.Column="3" Grid.Row="1" Name="btnLogout" Content="Logout" 
+                Height="20" Width="200" HorizontalAlignment="Right"
+                Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,0"/>
+
+        <Grid Grid.Column="1" Grid.Row="4" Height="auto" Width="auto" Grid.ColumnSpan="3">
+            <DataGrid x:Name="dgAllRecipes" ItemsSource="{Binding AllRecipes, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False"
+                      IsReadOnly="True" HeadersVisibility="Column" Margin="0,10,0,0"
+                      SelectedItem="{Binding Recipe, UpdateSourceTrigger=PropertyChanged}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Recipe Name" Binding="{Binding RecipeName}"/>
+                    <DataGridTextColumn Header="Recipe Type" Binding="{Binding RecipeType}"/>
+                    <DataGridTextColumn Header="Portions" Binding="{Binding Portions}"/>
+                    <DataGridTextColumn Header="Recipe Text" Binding="{Binding RecipeText}"/>
+                    <DataGridTextColumn Header="Date OfCreation" Binding="{Binding RecipeDateOfCreation }"/>
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnUpdate" Content="Update"
+                                    Command="{Binding DataContext.UpdateRecipe, UpdateSourceTrigger=PropertyChanged, 
+                                RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                                    Margin="4" FontWeight="Bold"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnDelete" Content="Delete"
+                                    Command="{Binding DataContext.DeleteRecipe, UpdateSourceTrigger=PropertyChanged, 
+                                RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                                    Margin="4" FontWeight="Bold"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
