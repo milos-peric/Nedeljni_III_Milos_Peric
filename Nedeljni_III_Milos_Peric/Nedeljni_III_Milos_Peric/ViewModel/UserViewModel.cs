@@ -4,7 +4,10 @@ using Nedeljni_III_Milos_Peric.View;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
-
+using System.Windows;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.IO;
+using System.Linq;
 
 namespace Nedeljni_III_Milos_Peric.ViewModel
 {
@@ -23,6 +26,7 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
             userView = userViewOpen;
             User = user;
             AllRecipes = GetAllRecipes();
+            EmptyTxtFile();
         }
 
         public UserViewModel(UserView userViewOpen)
@@ -105,7 +109,31 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
             }
         }
 
+        private ICommand updateRecipe;
+        public ICommand UpdateRecipe
+        {
+            get
+            {
+                if (updateRecipe == null)
+                {
+                    updateRecipe = new RelayCommand(param => UpdateRecipeExecute(), param => CanUpdateRecipeExecute());
+                }
+                return updateRecipe;
+            }
+        }
 
+        private ICommand deleteRecipe;
+        public ICommand DeleteRecipe
+        {
+            get
+            {
+                if (deleteRecipe == null)
+                {
+                    deleteRecipe = new RelayCommand(param => DeleteRecipeExecute(), param => CanDeleteRecipeExecute());
+                }
+                return deleteRecipe;
+            }
+        }
 
         #endregion
 
@@ -141,7 +169,7 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
                 using (RecipeDatabaseEntities db = new RecipeDatabaseEntities())
                 {
                     foreach (tblRecipe recipe in db.tblRecipes)
-                    {
+                    {                       
                         recipes.Add(recipe);
                     }
                 }
@@ -151,6 +179,84 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);
                 return null;
+            }
+        }
+
+        private void UpdateRecipeExecute()
+        {
+            if(User.UserID == Recipe.UserID || User.UserName == "Admin")
+            {
+                UpdateRecipeView view = new UpdateRecipeView(Recipe, User);
+                view.ShowDialog();
+                AllRecipes = GetAllRecipes();
+            }
+            else
+            {
+                MessageBox.Show("You can not Update Recipe that you did not create");
+            }
+        }
+
+        private bool CanUpdateRecipeExecute()
+        {
+            return true;
+        }
+
+        private void DeleteRecipeExecute()
+        {
+            try
+            {               
+                MessageBoxResult result = MessageBox.Show("Are you sure?", "Confirm Deleting", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        using (RecipeDatabaseEntities db = new RecipeDatabaseEntities())
+                        {
+                            tblRecipe deleteRecipe = new tblRecipe();
+                            deleteRecipe = db.tblRecipes.Where(r => r.RecipeID == Recipe.RecipeID).FirstOrDefault();
+
+                            db.tblRecipes.Remove(deleteRecipe);
+                            db.SaveChanges();
+                        }
+                        MessageBox.Show("Recipe Deleted Successfully!");
+                        AllRecipes = GetAllRecipes();
+                        break;
+                    case MessageBoxResult.No:                        
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
+
+        private bool CanDeleteRecipeExecute()
+        {
+            if (User.UserName == "Admin")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void EmptyTxtFile()
+        {
+            string _location = @"~/../../../ingredients.txt";
+
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(_location))
+                {
+                    sw.WriteLine("");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
 

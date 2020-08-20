@@ -3,6 +3,7 @@ using Nedeljni_III_Milos_Peric.View;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -273,7 +274,7 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
                     using (StreamWriter sw = new StreamWriter(_location))
                     {
                         foreach (string ingredient in Intgredients)
-                        {
+                        {                            
                             sw.WriteLine(ingredient);
                         }
                     }

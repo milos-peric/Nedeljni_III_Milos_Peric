@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Milos\Documents\GitHub\Nedeljni_III_Milos_Peric\Nedeljni_III_Milos_Peric\Nedeljni_III_Milos_Peric\RecipeDatabaseModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Pipi\Desktop\ajsad\Nedeljni_III_Milos_Peric\Nedeljni_III_Milos_Peric\RecipeDatabaseModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -1,4 +1,4 @@
-using Nedeljni_III_Milos_Peric.Command;
+﻿using Nedeljni_III_Milos_Peric.Command;
 using Nedeljni_III_Milos_Peric.View;
 using System;
 using System.Collections.Generic;
@@ -9,45 +9,28 @@ using System.Windows.Input;
 
 namespace Nedeljni_III_Milos_Peric.ViewModel
 {
-    class AddRecipeViewModel : ViewModelBase
+    class UpdateRecipeViewModel : ViewModelBase
     {
         #region Objects
 
-        AddRecipeView addRecipe;
+        UpdateRecipeView updateView;
 
         #endregion
 
         #region Constructors
 
-        public AddRecipeViewModel(AddRecipeView addRecipeOpen, tblUser user)
+        public UpdateRecipeViewModel(UpdateRecipeView updateViewOpen, tblRecipe recipe, tblUser user)
         {
-            addRecipe = addRecipeOpen;
-            User = user;
-            Recipe = new tblRecipe();
+            updateView = updateViewOpen;
+            Recipe = recipe;
             RecipeTypes = GetRecipeTypes();
+            User = user;
             EmptyTxtFile();
-        }
-
-        public AddRecipeViewModel(AddRecipeView addRecipeOpen)
-        {
-            addRecipe = addRecipeOpen;
         }
 
         #endregion
 
         #region Properties
-
-        private tblUser user;
-
-        public tblUser User
-        {
-            get { return user; }
-            set
-            {
-                user = value;
-                OnPropertyChanged("User");
-            }
-        }
 
         private tblRecipe recipe;
 
@@ -66,7 +49,7 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
         public string Type
         {
             get { return type; }
-            set 
+            set
             {
                 type = value;
                 OnPropertyChanged("Type");
@@ -78,7 +61,7 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
         public List<string> RecipeTypes
         {
             get { return recipeTypes; }
-            set 
+            set
             {
                 recipeTypes = value;
                 OnPropertyChanged("RecipeTypes");
@@ -86,18 +69,30 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
             }
         }
 
+        private tblUser user;
+
+        public tblUser User
+        {
+            get { return user; }
+            set 
+            {
+                user = value;
+                OnPropertyChanged("User");
+            }
+        }
+
+
         private List<tblIngredient> ingredients;
 
         public List<tblIngredient> Ingredients
         {
             get { return ingredients; }
-            set 
+            set
             {
                 ingredients = value;
                 OnPropertyChanged("Ingredients");
             }
         }
-
 
         #endregion
 
@@ -146,38 +141,60 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
 
         #region Functions
 
+        private List<string> GetRecipeTypes()
+        {
+            List<string> types = new List<string>();
+            types.Add("Appetizer");
+            types.Add("Main Course");
+            types.Add("Desert");
+
+            return types;
+        }
+
         private void SaveExecute()
         {
             try
             {
                 Ingredients = GetAllIngredients();
-                Recipe.RecipeType = Type;
-                Recipe.RecipeDateOfCreation = DateTime.Now;
-                Recipe.RecipeText = AllIngredientsToString(Ingredients);
-                if(Recipe.RecipeText == "")
-                {
-                    MessageBox.Show("Please choose ingredients.");
-                    return;
-                }
                 using (RecipeDatabaseEntities db = new RecipeDatabaseEntities())
                 {
-                    Recipe.UserID = User.UserID;
-                    db.tblRecipes.Add(Recipe);
-                    db.SaveChanges();
+                    tblRecipe oldRecipe = new tblRecipe();
+                    oldRecipe = db.tblRecipes.Where(r => r.RecipeID == Recipe.RecipeID).FirstOrDefault();
 
-                    foreach (tblIngredient ingredient in Ingredients)
+                    oldRecipe.RecipeName = Recipe.RecipeName;
+                    oldRecipe.Portions = Recipe.Portions;
+                    oldRecipe.RecipeType = Type;
+                    oldRecipe.RecipeDateOfCreation = DateTime.Now;
+                    oldRecipe.RecipeText = AllIngredientsToString(Ingredients);
+
+                    if (oldRecipe.RecipeText == "")
                     {
-                        tblRecipeIngredient recipeIngredient = new tblRecipeIngredient();
-                        recipeIngredient.RecipeID = Recipe.RecipeID;
-                        recipeIngredient.IngredientID = ingredient.IngredientID;
-                        db.tblRecipeIngredients.Add(recipeIngredient);
+                        MessageBox.Show("Please choose ingredients.");
+                        return;
+                    }
+                    else
+                    {
+                        if(User.UserName == "Admin")
+                        {
+                            oldRecipe.UserID = User.UserID;
+                        }
+                        if(Ingredients != null)
+                        {
+                            foreach (tblIngredient ingredient in Ingredients)
+                            {
+                                tblRecipeIngredient recipeIngredient = new tblRecipeIngredient();
+                                recipeIngredient.RecipeID = Recipe.RecipeID;
+                                recipeIngredient.IngredientID = ingredient.IngredientID;
+                                db.tblRecipeIngredients.Add(recipeIngredient);
+                            }
+                        }
+                   
+                        db.SaveChanges();
                     }
 
-                    db.SaveChanges();
-                    
                 }
-                MessageBox.Show("Recipe Created Successfully!");
-                addRecipe.Close();                
+                MessageBox.Show("Recipe Updated Successfully!");
+                updateView.Close();
             }
             catch (Exception ex)
             {
@@ -187,7 +204,7 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
 
         private bool CanSaveExecute()
         {
-            if (string.IsNullOrEmpty(Recipe.RecipeName) || string.IsNullOrEmpty(Type) 
+            if (string.IsNullOrEmpty(Recipe.RecipeName) || string.IsNullOrEmpty(Type)
                 || string.IsNullOrEmpty(Recipe.Portions.ToString()))
             {
                 return false;
@@ -200,23 +217,12 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
 
         private void CloseExecute()
         {
-            addRecipe.Close();
+            updateView.Close();
         }
 
         private bool CanCloseExecute()
         {
             return true;
-        }
-
-
-        private List<string> GetRecipeTypes()
-        {
-            List<string> types = new List<string>();
-            types.Add("Appetizer");
-            types.Add("Main Course");
-            types.Add("Desert");
-
-            return types;
         }
 
         private void ChooseIngredientsExecute()
@@ -243,7 +249,7 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
                     string[] allLines = File.ReadAllLines(_location);
                     foreach (string line in allLines)
                     {
-                        if(line == "")
+                        if (line == "")
                         {
                             continue;
                         }
