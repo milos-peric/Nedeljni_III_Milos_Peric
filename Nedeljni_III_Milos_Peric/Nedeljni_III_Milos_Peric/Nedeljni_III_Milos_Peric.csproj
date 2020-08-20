@@ -95,10 +95,18 @@
     </Compile>
     <Compile Include="Utility\EncryptionHelper.cs" />
     <Compile Include="Utility\EntryValidation.cs" />
+    <Compile Include="ViewModel\AddRecipeViewModel.cs" />
+    <Compile Include="ViewModel\ChooseIngredientsViewModel.cs" />
     <Compile Include="ViewModel\FirstTimeAccessViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\AddRecipeView.xaml.cs">
+      <DependentUpon>AddRecipeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChooseIngredientsView.xaml.cs">
+      <DependentUpon>ChooseIngredientsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FirstTimeAccessView.xaml.cs">
       <DependentUpon>FirstTimeAccessView.xaml</DependentUpon>
     </Compile>
@@ -120,6 +128,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AddRecipeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChooseIngredientsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\FirstTimeAccessView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
