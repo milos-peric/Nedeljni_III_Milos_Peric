@@ -72,7 +72,7 @@
                 Command="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}" Margin="10 5 10 5"/>-->
 
         <Label Grid.Column="4" Grid.Row="1" Content="Enter search term" Foreground="White" Margin="0" FontSize="16" HorizontalAlignment="Center"/>
-        <TextBox Grid.Column="4" Grid.Row="2" Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}" TextChanged="TextBox_TextChanged" Background="#FFDCE5F1" Foreground="White" FontSize="12" HorizontalAlignment="Right" Margin="10 5 10 5" Height="25"/>
+        <TextBox Grid.Column="4" Grid.Row="2" Text="" TextChanged="TextBox_TextChanged" Background="#FFDCE5F1" Foreground="White" FontSize="12" HorizontalAlignment="Right" Margin="10 5 10 5" Height="25"/>
 
         <Grid Grid.Column="1" Grid.Row="5" Height="auto" Width="auto" Grid.ColumnSpan="3">
             <DataGrid x:Name="dgAllRecipes" ItemsSource="{Binding AllRecipes, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" AlternatingRowBackground="LightCyan"
