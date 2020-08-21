@@ -76,8 +76,6 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
             }
         }
 
-
-
         #endregion
 
         #region Commands

@@ -5,10 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nedeljni_III_Milos_Peric.View"
         mc:Ignorable="d"
-        Title="User" Height="450" Width="800">
+        Title="User" Height="450" Width="900" Background="#FF477EA4">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin"            Value="20,0,20,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding"           Value="10,0,10,0" />
+            <Setter Property="Height"            Value="30" />
+            <Setter Property="Width"             Value="80" />
+            <Setter Property="Foreground"        Value="White" />
+            <Setter Property="Background"        Value="#545d6a" />
+            <Setter Property="FontSize"          Value="12" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background"        Value="#FF859CBD" />
+            <Setter Property="FontWeight"        Value="Bold" />
+            <Setter Property="FontSize"          Value="12" />
+            <Setter Property="Height"            Value="25" />
+            <Setter Property="Width"             Value="150" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize"          Value="12" />
+            <Setter Property="Foreground"        Value="White" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
@@ -35,22 +60,29 @@
         </Grid.RowDefinitions>
 
         <Button Grid.Column="1" Grid.Row="1" Name="btnAddRecipe" Content="Add Recipe" 
-                Height="20" Width="200" HorizontalAlignment="Left"
-                Command="{Binding AddRecipe, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,0"/>
+                Width="150" HorizontalAlignment="Left"
+                Command="{Binding AddRecipe, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0"/>
         
         <Button Grid.Column="3" Grid.Row="1" Name="btnLogout" Content="Logout" 
-                Height="20" Width="200" HorizontalAlignment="Right"
-                Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,0"/>
+                Width="150" HorizontalAlignment="Left"
+                Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0"/>
 
-        <Grid Grid.Column="1" Grid.Row="4" Height="auto" Width="auto" Grid.ColumnSpan="3">
-            <DataGrid x:Name="dgAllRecipes" ItemsSource="{Binding AllRecipes, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False"
-                      IsReadOnly="True" HeadersVisibility="Column" Margin="0,10,0,0"
+        <!--<Button Grid.Column="4" Grid.Row="3" Name="btnSearch" Content="Search" 
+                Width="150" HorizontalAlignment="Right"
+                Command="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}" Margin="10 5 10 5"/>-->
+
+        <Label Grid.Column="4" Grid.Row="1" Content="Enter search term" Foreground="White" Margin="0" FontSize="16" HorizontalAlignment="Center"/>
+        <TextBox Grid.Column="4" Grid.Row="2" Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}" TextChanged="TextBox_TextChanged" Background="#FFDCE5F1" Foreground="White" FontSize="12" HorizontalAlignment="Right" Margin="10 5 10 5" Height="25"/>
+
+        <Grid Grid.Column="1" Grid.Row="5" Height="auto" Width="auto" Grid.ColumnSpan="3">
+            <DataGrid x:Name="dgAllRecipes" ItemsSource="{Binding AllRecipes, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" AlternatingRowBackground="LightCyan"
+                      IsReadOnly="True" HeadersVisibility="Column" Margin="0,10,50,0"
                       SelectedItem="{Binding Recipe, UpdateSourceTrigger=PropertyChanged}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Recipe Name" Binding="{Binding RecipeName}"/>
                     <DataGridTextColumn Header="Recipe Type" Binding="{Binding RecipeType}"/>
                     <DataGridTextColumn Header="Portions" Binding="{Binding Portions}"/>
-                    <DataGridTextColumn Header="Recipe Text" Binding="{Binding RecipeText}"/>
+                    <DataGridTextColumn Header="Recipe Text" Binding="{Binding RecipeText}" TextSearch.Text="hhh"/>
                     <DataGridTextColumn Header="Date OfCreation" Binding="{Binding RecipeDateOfCreation }"/>
 
                     <DataGridTemplateColumn>

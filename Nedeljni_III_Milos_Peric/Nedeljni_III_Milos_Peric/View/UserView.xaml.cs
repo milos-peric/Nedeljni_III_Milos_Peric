@@ -31,5 +31,11 @@ namespace Nedeljni_III_Milos_Peric.View
             InitializeComponent();
             this.DataContext = new UserViewModel(this);
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var view = CollectionViewSource.GetDefaultView((DataContext as UserViewModel).AllRecipes);
+            view.Filter = o => (o as tblRecipe).RecipeName.Contains((sender as TextBox).Text);
+        }
     }
 }

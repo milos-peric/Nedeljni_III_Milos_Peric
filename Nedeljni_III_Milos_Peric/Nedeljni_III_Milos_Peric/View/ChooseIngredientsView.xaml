@@ -5,7 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nedeljni_III_Milos_Peric.View"
         mc:Ignorable="d"
-        Title="Choose Ingredients" Height="350" Width="260">
+        Title="Choose Ingredients" Height="350" Width="260" Background="#FF477EA4">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin"            Value="20,0,20,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding"           Value="10,0,10,0" />
+            <Setter Property="Height"            Value="30" />
+            <Setter Property="Width"             Value="80" />
+            <Setter Property="Foreground"        Value="White" />
+            <Setter Property="Background"        Value="#545d6a" />
+            <Setter Property="FontSize"          Value="12" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background"        Value="#FF859CBD" />
+            <Setter Property="FontWeight"        Value="Bold" />
+            <Setter Property="FontSize"          Value="12" />
+            <Setter Property="Height"            Value="25" />
+            <Setter Property="Width"             Value="150" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize"          Value="12" />
+            <Setter Property="Foreground"        Value="White" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
