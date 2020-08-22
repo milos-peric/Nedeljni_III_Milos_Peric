@@ -93,8 +93,11 @@
     <Compile Include="tblUser.cs">
       <DependentUpon>RecipeDatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utility\ActionEvent.cs" />
+    <Compile Include="Utility\ActionEventArgs.cs" />
     <Compile Include="Utility\EncryptionHelper.cs" />
     <Compile Include="Utility\EntryValidation.cs" />
+    <Compile Include="Utility\RecipeLogger.cs" />
     <Compile Include="ViewModel\AddRecipeViewModel.cs" />
     <Compile Include="ViewModel\ChooseIngredientsViewModel.cs" />
     <Compile Include="ViewModel\FirstTimeAccessViewModel.cs" />

@@ -8,6 +8,10 @@ using System.Windows;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.IO;
 using System.Linq;
+using System.ComponentModel;
+using Nedeljni_III_Milos_Peric.Utility;
+using System.Diagnostics;
+using System.Threading;
 
 namespace Nedeljni_III_Milos_Peric.ViewModel
 {
@@ -16,7 +20,8 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
         #region Objects
 
         UserView userView;
-
+        ActionEvent actionEventObject;
+        BackgroundWorker backgroundWorker1;
         #endregion
 
         #region Constructors
@@ -27,6 +32,15 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
             User = user;
             AllRecipes = GetAllRecipes();
             EmptyTxtFile();
+            actionEventObject = new ActionEvent();
+            backgroundWorker1 = new BackgroundWorker()
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true,
+            };
+            backgroundWorker1.DoWork += DoWork;
+            backgroundWorker1.RunWorkerAsync();
+            actionEventObject.ActionPerformed += ActionPerformed;
         }
 
         public UserViewModel(UserView userViewOpen)
@@ -257,6 +271,33 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
+
+        private void DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                if (!RecipeLogger.logMessage.Equals(""))
+                {
+                    RecipeLogger.LogToFile();
+                    Debug.WriteLine("Action was logged to file.");
+                }
+                Thread.Sleep(500);
+                if (backgroundWorker1.CancellationPending)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+        }
+
+        void ActionPerformed(object source, ActionEventArgs args)
+        {
+            RecipeLogger.logMessage = args.LogMessage;
+            RecipeLogger.logUserName = args.UserName;
+        }
+
+        //string logMessage = string.Format("Ingredient {0} was bought. Amount: {1}. Ingredient.IngredientName, Ingredient.IngredientAmount);
+        //actionEventObject.OnActionPerformed(logMessage, User.UserName);
 
         #endregion
     }
