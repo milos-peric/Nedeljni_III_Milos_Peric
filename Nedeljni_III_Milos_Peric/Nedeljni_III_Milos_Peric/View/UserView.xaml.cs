@@ -38,16 +38,10 @@ namespace Nedeljni_III_Milos_Peric.View
             view.Filter = o => (o as tblRecipe).RecipeName.Contains((sender as TextBox).Text);
         }
 
-        //private void TextBox1_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    var view = CollectionViewSource.GetDefaultView((DataContext as UserViewModel).AllRecipes);
-        //    view.Filter = o => (o as tblRecipe).RecipeType.Contains((sender as TextBox).Text);
-        //}
-
-        //private void TextBox2_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    var view = CollectionViewSource.GetDefaultView((DataContext as UserViewModel).AllRecipes);
-        //    view.Filter = o => (o as tblRecipe).RecipeText.Contains((sender as TextBox).Text);
-        //}
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            var view = CollectionViewSource.GetDefaultView((DataContext as UserViewModel).AllRecipes);
+            view.Filter = o => (o as tblRecipe).RecipeType.Contains((sender as TextBox).Text);
+        }
     }
 }

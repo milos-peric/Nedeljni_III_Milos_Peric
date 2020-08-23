@@ -23,7 +23,7 @@
             <Setter Property="FontWeight"        Value="Bold" />
             <Setter Property="FontSize"          Value="12" />
             <Setter Property="Height"            Value="25" />
-            <Setter Property="Width"             Value="150" />
+            <Setter Property="Width"             Value="140" />
         </Style>
         <Style TargetType="Label">
             <Setter Property="FontSize"          Value="12" />
@@ -60,19 +60,22 @@
         </Grid.RowDefinitions>
 
         <Button Grid.Column="1" Grid.Row="1" Name="btnAddRecipe" Content="Add Recipe" 
-                Width="150" HorizontalAlignment="Left"
-                Command="{Binding AddRecipe, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0"/>
+                Width="150" HorizontalAlignment="Center"
+                Command="{Binding AddRecipe, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
         
         <Button Grid.Column="3" Grid.Row="1" Name="btnLogout" Content="Logout" 
-                Width="150" HorizontalAlignment="Left"
-                Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0"/>
+                Width="150" HorizontalAlignment="Center"
+                Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
 
         <!--<Button Grid.Column="4" Grid.Row="3" Name="btnSearch" Content="Search" 
                 Width="150" HorizontalAlignment="Right"
                 Command="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}" Margin="10 5 10 5"/>-->
 
-        <Label Grid.Column="4" Grid.Row="1" Content="Enter search term" Foreground="White" Margin="0" FontSize="16" HorizontalAlignment="Center"/>
-        <TextBox Grid.Column="4" Grid.Row="2" Text="" TextChanged="TextBox_TextChanged" Background="#FFDCE5F1" Foreground="Black" FontSize="12" HorizontalAlignment="Right" Margin="10 5 10 5" Height="25"/>
+        <Label Grid.Column="1" Grid.Row="2" Content="Search by name" Foreground="White" Margin="0" FontSize="14" HorizontalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Text="" TextChanged="TextBox_TextChanged" Background="#FFDCE5F1" Foreground="Black" FontSize="12" HorizontalAlignment="Center" Margin="10 5 10 5" Height="25"/>
+
+        <Label Grid.Column="2" Grid.Row="2" Content="Search by type" Foreground="White" Margin="0" FontSize="14" HorizontalAlignment="Center"/>
+        <TextBox Grid.Column="2" Grid.Row="3" Text="" TextChanged="TextBox_TextChanged_1" Background="#FFDCE5F1" Foreground="Black" FontSize="12" HorizontalAlignment="Center" Margin="10 5 10 5" Height="25"/>
 
         <Grid Grid.Column="1" Grid.Row="5" Height="auto" Width="auto" Grid.ColumnSpan="3">
             <DataGrid x:Name="dgAllRecipes" ItemsSource="{Binding AllRecipes, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" AlternatingRowBackground="LightCyan"
