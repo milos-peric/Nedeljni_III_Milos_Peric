@@ -165,7 +165,9 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
 
         private void LogoutExecute()
         {
+            LoginView loginView = new LoginView();
             userView.Close();
+            loginView.Show();
         }
 
         private bool CanLogoutExecute()
@@ -295,10 +297,6 @@ namespace Nedeljni_III_Milos_Peric.ViewModel
             RecipeLogger.logMessage = args.LogMessage;
             RecipeLogger.logUserName = args.UserName;
         }
-
-        //string logMessage = string.Format("Ingredient {0} was bought. Amount: {1}. Ingredient.IngredientName, Ingredient.IngredientAmount);
-        //actionEventObject.OnActionPerformed(logMessage, User.UserName);
-
         #endregion
     }
 }

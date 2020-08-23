@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nedeljni_III_Milos_Peric.View"
         mc:Ignorable="d"
-        Title="User" Height="450" Width="900" Background="#FF477EA4">
+        Title="User" Height="550" Width="750" Background="#FF477EA4" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin"            Value="20,0,20,0" />
@@ -62,20 +62,20 @@
         <Button Grid.Column="1" Grid.Row="1" Name="btnAddRecipe" Content="Add Recipe" 
                 Width="150" HorizontalAlignment="Center"
                 Command="{Binding AddRecipe, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
-        
-        <Button Grid.Column="3" Grid.Row="1" Name="btnLogout" Content="Logout" 
-                Width="150" HorizontalAlignment="Center"
-                Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
 
-        <!--<Button Grid.Column="4" Grid.Row="3" Name="btnSearch" Content="Search" 
-                Width="150" HorizontalAlignment="Right"
-                Command="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}" Margin="10 5 10 5"/>-->
+        <Button Grid.Column="3" Grid.Row="1" Name="btnLogout" Content="Logout" 
+                Width="120" HorizontalAlignment="Left"
+                Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
 
         <Label Grid.Column="1" Grid.Row="2" Content="Search by name" Foreground="White" Margin="0" FontSize="14" HorizontalAlignment="Center"/>
         <TextBox Grid.Column="1" Grid.Row="3" Text="" TextChanged="TextBox_TextChanged" Background="#FFDCE5F1" Foreground="Black" FontSize="12" HorizontalAlignment="Center" Margin="10 5 10 5" Height="25"/>
 
         <Label Grid.Column="2" Grid.Row="2" Content="Search by type" Foreground="White" Margin="0" FontSize="14" HorizontalAlignment="Center"/>
         <TextBox Grid.Column="2" Grid.Row="3" Text="" TextChanged="TextBox_TextChanged_1" Background="#FFDCE5F1" Foreground="Black" FontSize="12" HorizontalAlignment="Center" Margin="10 5 10 5" Height="25"/>
+
+        <Label Grid.Column="2" Grid.Row="1" Content="Current user:" Foreground="White" Margin="0" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Grid.Column="2" Grid.Row="1" Content="{Binding User.UserName}" Foreground="Orange" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="75 0 0 0"/>
+
 
         <Grid Grid.Column="1" Grid.Row="5" Height="auto" Width="auto" Grid.ColumnSpan="3">
             <DataGrid x:Name="dgAllRecipes" ItemsSource="{Binding AllRecipes, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" AlternatingRowBackground="LightCyan"
